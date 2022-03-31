@@ -21,7 +21,9 @@ const LoginForm = () => {
       provider="facebook"
       appId="2124511251031824"
       onLoginSuccess={facebookLogin}
+      callback={facebookLogin}
       onLoginFailure={(error) => alert(error)}
+      redirect='http://localhost:3000'
     >
       <a href="#">
         <i className="fab fa-facebook" />
