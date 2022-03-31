@@ -19,8 +19,8 @@ const LoginForm = () => {
   const FacebookButton = () => (
     <SocialButton
       provider="facebook"
-      appId="379463793692346"
-      onLoginSuccess={() => facebookLogin}
+      appId="2124511251031824"
+      onLoginSuccess={facebookLogin}
       onLoginFailure={(error) => alert(error)}
     >
       <a href="#">
@@ -33,8 +33,8 @@ const LoginForm = () => {
     <SocialButton
       provider="google"
       appId="456854816924-rtstd411923r5umcgmpfdl8bh7t09l5e.apps.googleusercontent.com"
-      onLoginSuccess={() => googleLogin}
-      onLoginFailure={() => googleLogin}
+      onLoginSuccess={googleLogin}
+      onLoginFailure={googleLogin}
     >
       <a href="#">
         <i className="fab fa-google" />
