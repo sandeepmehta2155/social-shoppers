@@ -61,7 +61,7 @@ const LoggedInHeader = () => {
     }
 
     const getCoCarts = async () => {
-        await axios.get("http://34.123.15.119/api/cocarts").then(resp => setCoCarts(resp.data.Items))
+        await axios.get("https://tubbyturquoiseprocesses.sandeepmehta1.repl.co/api/cocarts").then(resp => setCoCarts(resp.data.Items))
     }
 
     let itmes = {};

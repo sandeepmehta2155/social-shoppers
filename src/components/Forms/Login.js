@@ -17,11 +17,11 @@ const LoginForm = () => {
   const closeRef = useRef(null);
 
   const onClickGoogleLogin = () => {
-    window.open(`http://localhost:5000/api/users/google`, "_self");
+    window.open(`https://tubbyturquoiseprocesses.sandeepmehta1.repl.co/api/users/google`, "_self");
   };
 
   const onClickFacebookLogin = () => {
-    window.open(`http://localhost:5000/api/auth/facebook`, "_self");
+    window.open(`https://tubbyturquoiseprocesses.sandeepmehta1.repl.co/api/auth/facebook`, "_self");
   };
 
   useEffect(() => {
@@ -36,31 +36,6 @@ const LoginForm = () => {
       API.configurations.SET_CURRENT_USER(token);
     }
   }, [window]);
-  const FacebookButton = () => (
-    <SocialButton
-      provider="facebook"
-      appId="379463793692346"
-      onLoginSuccess={() => facebookLogin}
-      onLoginFailure={(error) => alert(error)}
-    >
-      <a href="#">
-        <i className="fab fa-facebook" />
-      </a>
-    </SocialButton>
-  );
-
-  const GoogleButton = () => (
-    <SocialButton
-      provider="google"
-      appId="456854816924-rtstd411923r5umcgmpfdl8bh7t09l5e.apps.googleusercontent.com"
-      onLoginSuccess={() => googleLogin}
-      onLoginFailure={() => googleLogin}
-    >
-      <a href="#">
-        <i className="fab fa-google" />
-      </a>
-    </SocialButton>
-  );
 
   useEffect(() => {
     hello.on("auth.login", function (auth) {
