@@ -10,8 +10,6 @@ import axios from "axios";
 import mobileImage from "../../assets/images/mobile.svg";
 import API from "../../api";
 
-const REACT_API_BASE_URL = "https://localhost:8000/test";
-
 const LoginForm = () => {
   const navigation = useNavigate();
   const [credential, setCredential] = useState("");
@@ -19,12 +17,50 @@ const LoginForm = () => {
   const closeRef = useRef(null);
 
   const onClickGoogleLogin = () => {
-    window.open(`${REACT_API_BASE_URL}/auth/google`, "_self");
+    window.open(`http://localhost:5000/api/users/google`, "_self");
   };
 
   const onClickFacebookLogin = () => {
-    window.open(`${REACT_API_BASE_URL}/auth/facebook`, "_self");
+    window.open(`http://localhost:5000/api/auth/facebook`, "_self");
   };
+
+  useEffect(() => {
+    const test = window.location.href;
+    const userEmail = test.split("/");
+    const temp = test.split("&");
+    const userToken = temp[0].split("=");
+    const token = {
+      token: userToken[1],
+    };
+    if (token.token !== undefined) {
+      API.configurations.SET_CURRENT_USER(token);
+    }
+  }, [window]);
+  const FacebookButton = () => (
+    <SocialButton
+      provider="facebook"
+      appId="379463793692346"
+      onLoginSuccess={() => facebookLogin}
+      onLoginFailure={(error) => alert(error)}
+    >
+      <a href="#">
+        <i className="fab fa-facebook" />
+      </a>
+    </SocialButton>
+  );
+
+  const GoogleButton = () => (
+    <SocialButton
+      provider="google"
+      appId="456854816924-rtstd411923r5umcgmpfdl8bh7t09l5e.apps.googleusercontent.com"
+      onLoginSuccess={() => googleLogin}
+      onLoginFailure={() => googleLogin}
+    >
+      <a href="#">
+        <i className="fab fa-google" />
+      </a>
+    </SocialButton>
+  );
 
   useEffect(() => {
     hello.on("auth.login", function (auth) {
@@ -243,8 +279,8 @@ const LoginForm = () => {
                     return errors;
                   }}
                   onSubmit={(values, { setSubmitting }) => {
+                    onSubmit(values);
                     setTimeout(() => {
-                      alert(JSON.stringify(values, null, 2));
                       setSubmitting(false);
                     }, 400);
                   }}
@@ -366,19 +402,28 @@ const LoginForm = () => {
             </div>
             <div className="login-options">
               <li>
-                <a href={(`${REACT_API_BASE_URL}/auth/google`, "_self")}>
+                <a>
                   <i
                     className="fab fa-facebook"
                     onClick={onClickFacebookLogin}
                   />
                 </a>
               </li>
+
               <li>
-                <a href={(`${REACT_API_BASE_URL}/auth/facebook`, "_self")}>
-                  <i className="fab fa-google" onClick={onClickGoogleLogin} />
+                <a onClick={onClickGoogleLogin}>
+                  <i className="fab fa-google" />
                 </a>
               </li>
             </div>
+            {/* <div className="login-options">
+              <li>
+                <FacebookButton />
+              </li>
+              <li>
+                <GoogleButton />
+              </li>
+            </div> */}
           </div>
           {/* <li onClick={googleLogin}><a href="#"><i className="fab fa-google" /></a></li> */}
         </div>
