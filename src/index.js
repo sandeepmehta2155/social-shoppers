@@ -7,7 +7,7 @@ import { BrowserRouter as Routes } from 'react-router-dom'
 import axios from 'axios'
 
 
-axios.defaults.baseURL = 'http://34.123.15.119/api'
+axios.defaults.baseURL = 'https://tubbyturquoiseprocesses.sandeepmehta1.repl.co'
 axios.defaults.headers.Authorization = localStorage.getItem('token')
 
 ReactDOM.render(

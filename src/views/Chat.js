@@ -6,7 +6,7 @@ import io from "socket.io-client";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../api";
 
-const SOCKET_URL = "http://34.123.15.119";
+const SOCKET_URL = "https://tubbyturquoiseprocesses.sandeepmehta1.repl.co";
 
 const Chat = () => {
   let refresh = false;
