@@ -10,39 +10,21 @@ import axios from "axios";
 import mobileImage from "../../assets/images/mobile.svg";
 import API from "../../api";
 
+const REACT_API_BASE_URL = "https://localhost:8000/test";
+
 const LoginForm = () => {
   const navigation = useNavigate();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const closeRef = useRef(null);
 
-  const FacebookButton = () => (
-    <SocialButton
-      provider="facebook"
-      appId="2124511251031824"
-      onLoginSuccess={facebookLogin}
-      callback={facebookLogin}
-      onLoginFailure={(error) => alert(error)}
-      redirect='http://localhost:3000'
-    >
-      <a href="#">
-        <i className="fab fa-facebook" />
-      </a>
-    </SocialButton>
-  );
+  const onClickGoogleLogin = () => {
+    window.open(`${REACT_API_BASE_URL}/auth/google`, "_self");
+  };
 
-  const GoogleButton = () => (
-    <SocialButton
-      provider="google"
-      appId="456854816924-rtstd411923r5umcgmpfdl8bh7t09l5e.apps.googleusercontent.com"
-      onLoginSuccess={googleLogin}
-      onLoginFailure={googleLogin}
-    >
-      <a href="#">
-        <i className="fab fa-google" />
-      </a>
-    </SocialButton>
-  );
+  const onClickFacebookLogin = () => {
+    window.open(`${REACT_API_BASE_URL}/auth/facebook`, "_self");
+  };
 
   useEffect(() => {
     hello.on("auth.login", function (auth) {
@@ -330,7 +312,6 @@ const LoginForm = () => {
                     </Form>
                   )}
                 </Formik>
-
                 {/* <form onSubmit={onSubmit}>
                   <div className="input-group mb-4">
                     <span className="input-group-text" id="basic-addon1">
@@ -385,10 +366,17 @@ const LoginForm = () => {
             </div>
             <div className="login-options">
               <li>
-                <FacebookButton />
+                <a href={(`${REACT_API_BASE_URL}/auth/google`, "_self")}>
+                  <i
+                    className="fab fa-facebook"
+                    onClick={onClickFacebookLogin}
+                  />
+                </a>
               </li>
               <li>
-                <GoogleButton />
+                <a href={(`${REACT_API_BASE_URL}/auth/facebook`, "_self")}>
+                  <i className="fab fa-google" onClick={onClickGoogleLogin} />
+                </a>
               </li>
             </div>
           </div>
