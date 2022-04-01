@@ -36,7 +36,7 @@ const Routers = () => {
       <Route path="/members" element={<RouteRequiresLogin><Members /></RouteRequiresLogin>} />
       <Route path="/productresults/:query" element={<ProductSearchResult />} />
       <Route path="/results" element={<SearchResult />} />
-      <Route path="/chat/:chatId" element={<RouteRequiresLogin><Chat /></RouteRequiresLogin>} />
+      <Route path="/chat/:chatId" element={<Chat />} />
       <Route path="/terms" element={<Terms />} />
     </Routes>
   );
